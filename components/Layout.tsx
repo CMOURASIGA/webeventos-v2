@@ -48,7 +48,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate
       <aside className="hidden md:flex w-64 flex-col bg-white border-r border-slate-200 shadow-sm z-10">
         <div className="p-6 flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-xl shadow-brand-200 shadow-lg">L</div>
-          <span className="font-bold text-slate-800 text-lg tracking-tight">Lumina EventOS</span>
+          <span className="font-bold text-slate-800 text-lg tracking-tight">Gestão de Eventos/Serviços</span>
         </div>
 
 

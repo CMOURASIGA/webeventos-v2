@@ -144,18 +144,18 @@ export const TeamView = () => {
         <p className="text-sm text-slate-500">Recursos humanos</p>
         <h1 className="text-3xl font-bold text-slate-900">Equipe operacional</h1>
         <p className="text-slate-500">
-          Visualize disponibilidade, competências e carga de trabalho para alocar a equipe ideal em cada evento.
+          Visualize disponibilidade, competÃªncias e carga de trabalho para alocar a equipe ideal em cada evento.
         </p>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
         <SummaryCard label="Profissionais livres" value={summary.livre.toString()} helper="Sem tarefas ativas" />
         <SummaryCard label="Em planejamento" value={summary.ocupado.toString()} helper="Executando tarefas" />
-        <SummaryCard label="Atuando em eventos" value={summary.emEvento.toString()} helper="Evento em execução" />
+        <SummaryCard label="Atuando em eventos" value={summary.emEvento.toString()} helper="Evento em execuÃ§Ã£o" />
         <SummaryCard
           label="Capacidade utilizada"
           value={`${summary.capacity}%`}
-          helper="Carga média da equipe"
+          helper="Carga mÃ©dia da equipe"
         />
       </div>
 
@@ -274,7 +274,7 @@ const TeamCard = ({ member }: { member: TeamMemberCard }) => (
       </div>
 
       <div>
-        <p className="text-xs text-slate-500">Competências</p>
+        <p className="text-xs text-slate-500">CompetÃªncias</p>
         <div className="flex flex-wrap gap-2 mt-2">
           {member.skills.map((skill) => (
             <span key={skill} className="px-2 py-1 bg-slate-100 text-xs rounded-full text-slate-600">
@@ -285,15 +285,15 @@ const TeamCard = ({ member }: { member: TeamMemberCard }) => (
       </div>
 
       <div>
-        <p className="text-xs text-slate-500">Tarefas atribuídas</p>
+        <p className="text-xs text-slate-500">Tarefas atribuÃ­das</p>
         {member.tasks.length === 0 ? (
-          <p className="text-xs text-slate-500">Sem atribuições no momento.</p>
+          <p className="text-xs text-slate-500">Sem atribuiÃ§Ãµes no momento.</p>
         ) : (
           <ul className="text-xs text-slate-600 space-y-1 max-h-24 overflow-auto pr-1">
             {member.tasks.slice(0, 4).map((task) => (
               <li key={task.id} className="flex items-center justify-between gap-2">
                 <span className="truncate">{task.titulo}</span>
-                <span className="text-[11px] text-slate-400 capitalize">{taskStatusLabel[task.status]}</span>
+                <span className="text-[11px] text-slate-400 capitalize">{TASK_STATUS_LABEL[task.status]}</span>
               </li>
             ))}
             {member.tasks.length > 4 ? (

@@ -172,7 +172,7 @@ export const RelatorioEventoPrintPage = () => {
     <div className="min-h-screen bg-white text-slate-900">
       <div className="mx-auto max-w-4xl p-8 space-y-8 print:p-8">
         <header className="space-y-2">
-          <p className="text-xs text-slate-500">Lumina EventOS • Relatorio exclusivo para impressao</p>
+          <p className="text-xs text-slate-500">Gestão de Eventos/Serviços • Relatorio exclusivo para impressao</p>
           <h1 className="text-3xl font-semibold">Relatorio do evento: {evento.titulo}</h1>
           <p className="text-sm text-slate-600">
             Emitido em {formatDate(new Date().toISOString().slice(0, 10))}
