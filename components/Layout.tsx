@@ -5,14 +5,16 @@ import {
   CheckSquare, 
   PieChart, 
   Users, 
+  DollarSign,
   Settings, 
   Bell, 
   Search,
   Menu,
   X,
-  Plus
+  Plus,
+  BadgeCheck
 } from 'lucide-react';
-import { MOCK_USER } from '../constants';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,11 +24,20 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { profile, user } = useAuth();
+
+  const displayName = profile?.nome ?? user?.user_metadata?.full_name ?? user?.email ?? 'Usuário';
+  const roleLabel = profile?.papel ?? 'Event Manager';
+  const avatarUrl =
+    (user?.user_metadata as { avatar_url?: string })?.avatar_url ??
+    'https://ui-avatars.com/api/?name=User';
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'events', label: 'Events', icon: CalendarDays },
-    { id: 'tasks', label: 'Tasks', icon: CheckSquare },
+    { id: 'tasks', label: 'Tarefas', icon: CheckSquare },
+    { id: 'budgets', label: 'Orcamentos', icon: DollarSign },
+    { id: 'approvals', label: 'Aprovacoes', icon: BadgeCheck },
     { id: 'reports', label: 'Reports', icon: PieChart },
     { id: 'team', label: 'Team', icon: Users },
   ];
@@ -37,15 +48,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate
       <aside className="hidden md:flex w-64 flex-col bg-white border-r border-slate-200 shadow-sm z-10">
         <div className="p-6 flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-xl shadow-brand-200 shadow-lg">L</div>
-          <span className="font-bold text-slate-800 text-lg tracking-tight">Lumina EventOS</span>
+          <span className="font-bold text-slate-800 text-lg tracking-tight">Gestão de Eventos/Serviços</span>
         </div>
 
-        <div className="px-4 mb-6">
-          <button className="w-full flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white py-2.5 px-4 rounded-xl transition-all shadow-md shadow-brand-200 font-medium text-sm">
-            <Plus size={18} />
-            <span>New Event</span>
-          </button>
-        </div>
 
         <nav className="flex-1 px-3 space-y-1">
           {navItems.map((item) => (
@@ -65,8 +70,15 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate
         </nav>
 
         <div className="p-4 border-t border-slate-100">
-          <button className="w-full flex items-center gap-3 px-3 py-2 text-slate-600 hover:text-slate-900 text-sm font-medium">
-            <Settings size={18} />
+          <button
+            onClick={() => onNavigate('settings')}
+            className={`w-full flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg ${
+              activeView === 'settings'
+                ? 'text-brand-700 bg-brand-50'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+            }`}
+          >
+            <Settings size={18} className={activeView === 'settings' ? 'text-brand-600' : 'text-slate-400'} />
             <span>Settings</span>
           </button>
         </div>
@@ -99,6 +111,18 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate
               {item.label}
             </button>
           ))}
+          <button
+            onClick={() => {
+              onNavigate('settings');
+              setIsMobileMenuOpen(false);
+            }}
+            className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium ${
+              activeView === 'settings' ? 'bg-brand-50 text-brand-700' : 'text-slate-600'
+            }`}
+          >
+            <Settings size={20} />
+            Settings
+          </button>
         </nav>
       </div>
 
@@ -131,11 +155,11 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate
             <div className="h-8 w-px bg-slate-200 mx-1 hidden sm:block"></div>
             <div className="flex items-center gap-3">
               <div className="text-right hidden sm:block">
-                <p className="text-sm font-medium text-slate-700">{MOCK_USER.name}</p>
-                <p className="text-xs text-slate-500">Event Manager</p>
+                <p className="text-sm font-medium text-slate-700">{displayName}</p>
+                <p className="text-xs text-slate-500 capitalize">{roleLabel}</p>
               </div>
               <img 
-                src={MOCK_USER.avatarUrl} 
+                src={avatarUrl} 
                 alt="Profile" 
                 className="w-9 h-9 rounded-full border-2 border-white shadow-sm object-cover"
               />
