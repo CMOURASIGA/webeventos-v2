@@ -10,6 +10,7 @@ import { OrcamentosPage } from "@/pages/OrcamentosPage";
 import { AprovacoesPage } from "@/pages/AprovacoesPage";
 import { RelatoriosPage } from "@/pages/RelatoriosPage";
 import { RelatorioEventoPrintPage } from "@/pages/RelatorioEventoPrintPage";
+import { TeamView } from "@/pages/TeamView";
 import Login from "@/components/Login";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -98,7 +99,7 @@ const App: React.FC = () => {
         <Route path="/orcamentos" element={<OrcamentosPage />} />
         <Route path="/aprovacoes" element={<AprovacoesPage />} />
         <Route path="/relatorios" element={<RelatoriosPage />} />
-        <Route path="/equipe" element={<PlaceholderView label="team" />} />
+        <Route path="/equipe" element={<TeamView />} />
         <Route path="*" element={<PlaceholderView label="nao encontrado" />} />
       </Routes>
     </Layout>
