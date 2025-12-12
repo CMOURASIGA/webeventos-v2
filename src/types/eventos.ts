@@ -34,6 +34,8 @@ export interface Perfil {
   ativo: boolean;
   created_at: string;
   updated_at: string;
+  permissoes?: Record<string, any> | null;
+  avatar_url?: string | null;
 }
 
 export interface Evento {
