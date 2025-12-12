@@ -15,6 +15,7 @@ import {
   BadgeCheck
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import BrandIcon from '/logo.png';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -47,16 +48,12 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeView, onNavigate
       {/* Sidebar - Desktop */}
       <aside className="hidden md:flex w-64 flex-col bg-white border-r border-slate-200 shadow-sm z-10">
         <div className="p-6 flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center shadow-lg">
-            <img
-              src="/logo.png"
-              alt="Gest\u00E3o de Eventos/Servi\u00E7os"
-              className="w-10 h-10 rounded-xl object-cover"
-            />
+          <div className="w-12 h-12 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center shadow-lg overflow-hidden">
+            <img src={BrandIcon} alt="Gestão de Eventos/Serviços" className="w-11 h-11 object-cover" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-slate-800 text-lg leading-tight">Gest\u00E3o de Eventos/Servi\u00E7os</span>
-            <span className="text-xs text-slate-500 uppercase tracking-wide">Planejamento e execu\u00E7\u00E3o</span>
+            <span className="font-bold text-slate-900 text-lg leading-tight">Gestão de Eventos/Serviços</span>
+            <span className="text-xs text-slate-500 uppercase tracking-wide">Planejamento e execução</span>
           </div>
         </div>
 
